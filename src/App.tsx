@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation, useNavigate, HashRouter as Router } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Login from './pages/Login';
 import AdminDashboard from './pages/admin/Dashboard';
@@ -16,7 +16,7 @@ import PublicLayout from './components/PublicLayout';
 import { useAuth } from './contexts/AuthContext';
 import ArticleDetail from './pages/shared/ArticleDetail';
 
-function App() {
+function AppRoutes() {
   const { user } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
@@ -104,6 +104,14 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppRoutes />
+    </Router>
   );
 }
 
